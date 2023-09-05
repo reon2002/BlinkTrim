@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family: 'Inter', sans-serif;
+    background-color:black;
+    color:white;
+}
+
+nav{
+    height:100px;
+    width:100%;
+    background-color:#854CFF;
+    display:flex;
+}
+
+.logo{
+    height:100%;
+    width:50%;
+    font-size:25px;
+    text-align:left;
+    /* margin-top:auto;
+    margin-bottom:auto; */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo h3{
+    margin-left:-40vh;
+    cursor:pointer;
+    color:black;
+}
+.logo span{
+    color:#FFC857;
+}
+
+.nav-items{
+    display:flex;
+    /* background:white; */
+    height:100%;
+    width:50%;
+    justify-content: right;
+    font-size:20px;
+    padding:20px;
+    color:white;
+}
+
+.home{
+    margin:auto 10px;
+    font-weight:500;
+    cursor:pointer;
+    text-decoration:none;
+    color:white;
+}
+
+.home:hover{
+    color:#FFC857;
+    transition:0.5s;
+}
+
+.nextButton{
+    margin:auto 15px;
+    margin-right:40px;
+    cursor:pointer;
+    height:40px;
+    width:150px;
+    background-color:#FFC857;
+    border-radius:5px;
+    padding:7px 5px;
+    
+}
+
+.nextButton:hover{
+    background-color:#ffffff;
+    color:#854CFF;
+    transition:0.5s;
+}
+
+.goNext{
+    font-weight:500;
+    text-align:center;
+}
+
+.header{
+    font-family: 'Libre Baskerville', serif;
+    margin:50px auto;
+    text-align:center;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+}
+
+.secure, .blazing, .cheap, .customize{
+    display:flex;
+    justify-content:center;
+}
+
+
+
+.shield, .edit, .dollar, .fast{
+    height:30px;
+    width:auto;
+    margin-right:5px;
+}
+
+/* .edit{
+    height:30px;
+    width:auto;
+} */
+
+.col1{
+    margin-right:20px;
+}
+
+.col2{
+    margin-right:20px;
+    margin-left:20px;
+}
+
+.col3{
+    margin-left:20px;
+}
+    
+.secure, .customize{
+    margin-bottom:100px;
+}
+
+.cheap, .blazing{
+    margin-top:300px;
+}
+
+.watermark{
+    color:#B0B0B0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align:center;
+    margin-top:30px;
+}

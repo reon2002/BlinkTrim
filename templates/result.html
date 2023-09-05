@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlinkTrim | Result</title>
+    
+    <!-- Include the CSS file from the static directory -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/result.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h3 id="goHomepage">Blink<span>Trim</span></h3>
+        </div>
+        <div class="nav-items">
+            <!-- Use Flask's url_for function to generate URLs -->
+            <h4 class="home"><a href="{{ url_for('home') }}" class="home">Home</a></h4>
+            <div class="nextButton" onClick="uploadURL()">
+                <h4 class="goNext">Get Started</h4>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="header">Link <span style="color:#854CFF;">Less,</span> Do <span style="color:#FFC857;">More!</span></h1>
+        <div class="image-container">
+            <!-- Use url_for for background images as well -->
+            <img src="{{ url_for('static', filename='assets/elements/bg.png') }}">
+            <div class="textContainer">
+                <h2>Shortened URL</h2>
+                <input type="text" id="url" value="{{ short_url }}">
+                <p>Long URL : <span id="old">{{ submitted_url }}</span></p>
+                <form action="{{ url_for('upload') }}">
+                    <input type="submit" value="Shorten another URL" id="shorten">
+                </form>
+            </div>
+        </div>
+        <p class="watermark">&copy;RB</p>
+    </div>
+    <!-- Flask routes handle navigation -->
+    <script>
+        function uploadURL(){
+            window.location.href = "{{ url_for('upload') }}";
+        }
+    </script>
+    <script>
+        document.getElementById("goHomepage").addEventListener("click", function(event){
+            window.location.href = "{{ url_for('home') }}";
+        })
+    </script>
+</body>
+</html>
