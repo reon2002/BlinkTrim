@@ -43,7 +43,27 @@ def upload():
 
 @app.route('/result')
 def result():
-    # Retrieve the short URL and submitted URL from the query parameters
+    # Retrieve the short URL from the query parameters
     short_url = request.args.get('short_url')
-    submitted_url = request.args.get('submitted_url')
-    return render_template('result.html', short_url=short_url, submitted_url=submitted_url)
+
+    # Check if the short URL exists in the database
+    url_entry = Url.query.filter_by(short_code=short_url.split("/")[-1]).first()
+    
+    if url_entry:
+        submitted_url = url_entry.long_url
+        return render_template('result.html', short_url=short_url, submitted_url=submitted_url)
+    else:
+        return render_template('error.html')  # Render the error page when the short URL is not found
+
+
+@app.route('/<short_code>')
+def redirect_to_original_url(short_code):
+    # Query the database to find the original URL based on the short code
+    url_entry = Url.query.filter_by(short_code=short_code).first()
+    
+    if url_entry:
+        # Redirect the user to the original URL
+        return redirect(url_entry.long_url)
+    else:
+        # Render an error page if the short code is not found
+        return render_template('error.html')
