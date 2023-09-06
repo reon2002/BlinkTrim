@@ -16,24 +16,30 @@ def home():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        # Process the submitted URL and generate a short URL
+        # Process the submitted URL and check if it already exists in the database
         submitted_url = request.form.get('url')
-
-        # Generate a random 8-digit code for the short URL
-        random_code = generate_short_code()
-
-        # Construct the short URL
-        short_url = f'short.bt/{random_code}'
-
-        # Store the URL in the database
-        url_entry = Url(long_url=submitted_url, short_code=random_code)
-        db.session.add(url_entry)
-        db.session.commit()
+        
+        # Check if the submitted URL already exists in the database
+        url_entry = Url.query.filter_by(long_url=submitted_url).first()
+        
+        if url_entry:
+            # If the URL already exists, return the existing short URL
+            short_url = f'short.bt/{url_entry.short_code}'
+        else:
+            # If the URL does not exist, generate a new short URL
+            random_code = generate_short_code()
+            short_url = f'short.bt/{random_code}'
+            
+            # Store the new URL in the database
+            url_entry = Url(long_url=submitted_url, short_code=random_code)
+            db.session.add(url_entry)
+            db.session.commit()
 
         # Redirect to the 'result' page with the generated short URL and submitted URL
         return redirect(url_for('result', short_url=short_url, submitted_url=submitted_url))
 
     return render_template('upload.html')
+
 
 @app.route('/result')
 def result():
